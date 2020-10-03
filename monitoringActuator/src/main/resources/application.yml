@@ -1,0 +1,40 @@
+management:
+  security:
+    enabled: false
+  endpoint:
+    health:
+      show-details: always    # Habilita a exibição dos detalhes da aplicação pelo actuator.
+    web:
+      exposure:
+        include: '*'            # Alem do health e do info ele sempre vai expor todos endpoints disponíveis.
+
+
+
+info: # puxa informações do projeto do build.gradle
+  app:
+    name: ${name}
+    version: ${version}
+
+spring:
+  boot:
+    admin:
+        url: http://localhost:8081/  # configurando a url para a api do Spring Boot Admin Server.
+  application:
+    name: monitoringActuator
+
+
+  datasource:
+    url: jdbc:h2:file:~/db/database
+    username: sa
+    password:
+
+  jpa:
+    generate-ddl: true
+    show-sql: false
+    open-in-view: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
